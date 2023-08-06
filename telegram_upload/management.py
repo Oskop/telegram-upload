@@ -183,8 +183,10 @@ def upload(files, to, reply_id, config, delete_on_success, print_file_id, force_
         files = list(files)
     if isinstance(to, str) and to.lstrip("-+").isdigit():
         to = int(to)
-    if isinstance(reply_id, str) and to.lstrip("-+").isdigit():
+    try:
         reply_id = int(reply_id)
+    except:
+        reply_id = None
     if sort and natsorted:
         files = natsorted(files, key=lambda x: x.name)
     elif sort:
