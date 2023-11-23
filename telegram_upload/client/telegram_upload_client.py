@@ -23,7 +23,7 @@ MAX_RECONNECT_RETRIES = get_environment_integer('TELEGRAM_UPLOAD_MAX_RECONNECT_R
 RECONNECT_TIMEOUT = get_environment_integer('TELEGRAM_UPLOAD_RECONNECT_TIMEOUT', 5)
 MIN_RECONNECT_WAIT = get_environment_integer('TELEGRAM_UPLOAD_MIN_RECONNECT_WAIT', 2)
 
-# region
+
 class TelegramUploadClient(TelegramClient):
     parallel_upload_blocks = PARALLEL_UPLOAD_BLOCKS
 

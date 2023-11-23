@@ -115,7 +115,7 @@ class MutuallyExclusiveOption(click.Option):
 @click.option('--to', default=None, help='Phone number, username, invite link or "me" (saved messages). '
                                          'By default "me".')
 @click.option('--reply-id', default=None, help='Reply message with message id '
-                                         'By default "None".')
+              'By default "None".')
 @click.option('--config', default=None, help='Configuration file to use. By default "{}".'.format(CONFIG_FILE))
 @click.option('-d', '--delete-on-success', is_flag=True, help='Delete local file after successful upload.')
 @click.option('--print-file-id', is_flag=True, help='Print the id of the uploaded file after the upload.')
