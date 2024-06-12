@@ -39,14 +39,23 @@ telegram-upload
 Telegram-upload uses your **personal Telegram account** to **upload** and **download** files up to **4 GiB** (2 GiB for
 free users). Turn Telegram into your personal ☁ cloud!
 
-To **install 🔧 telegram-upload**, run this command in your terminal:
+To **install 🔧 telegram-upload** from original repo (Nekmo), run this command in your terminal:
 
 .. code-block:: console
 
-    $ sudo pip3 install -U telegram-upload
+    $ sudo pip3 install -U telegram-upload # original version
+
+To **install 🔧 telegram-upload** from this forked version, run this command in your terminal:
+
+.. code-block:: console
+
+    $ sudo pip3 install git+https://github.com/Oskop/telegram-upload.git@master#egg=telegram_upload
+    or
+    $ pip install git+https://github.com/Oskop/telegram-upload.git@master#egg=telegram_upload
 
 This is the preferred method to install telegram-upload, as it will always install the most recent stable release.
-🐍 **Python 3.7-3.11** are tested and supported. There are other installation ways available like `Docker <#-docker>`_.
+🐍 **Python 3.7-3.11** are tested and supported. In this forked repo fix RPCError 420: FLOOD_PREMIUM_WAIT by adding 
+delay on progress bar update. There are other installation ways available like `Docker <#-docker>`_.
 More info in the `📕 documentation <https://docs.nekmo.org/telegram-upload/installation.html>`_
 
 .. image:: https://raw.githubusercontent.com/Nekmo/telegram-upload/master/telegram-upload-demo.gif
@@ -96,6 +105,13 @@ chat. However you can define the 👨 destination. For file upload the argument 
 .. code-block::
 
     $ telegram-upload --to telegram.me/joinchat/AAAAAEkk2WdoDrB4-Q8-gg video.mkv
+
+You can upload files for replying to a specific chat using the --to <entity> and --reply-id <chatid> parameter. 
+You can get <chatid> by selecting <Copy Post Link> in the message options (ex. https://t.me/<entityid>/<chatid>). For example:
+
+.. code-block::
+
+    $ telegram-upload --to telegram.me/joinchat/AAAAAEkk2WdoDrB4-Q8-gg --reply-id 12
 
 You can download files from a specific chat using the --from <entity> parameter. For example:
 
