@@ -1,6 +1,7 @@
 from ctypes import c_int64
 
 import click
+import time
 
 
 def get_progress_bar(action, file, length):
@@ -13,4 +14,5 @@ def get_progress_bar(action, file, length):
         bar.pos = 0
         bar.update(current)
         last_current.value = current
+        time.sleep(.25)
     return progress, bar
