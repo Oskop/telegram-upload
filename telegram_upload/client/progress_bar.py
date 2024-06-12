@@ -14,5 +14,5 @@ def get_progress_bar(action, file, length):
         bar.pos = 0
         bar.update(current)
         last_current.value = current
-        time.sleep(.3)
+        time.sleep(.27)
     return progress, bar
