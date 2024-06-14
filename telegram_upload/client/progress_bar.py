@@ -5,7 +5,7 @@ import time
 
 
 def get_progress_bar(action, file, length):
-    bar = click.progressbar(label='{} "{}"'.format(action, file), length=length)
+    bar = click.progressbar(label='{} {} "{}"'.format(action, length, file), length=length)
     last_current = c_int64(0)
 
     def progress(current, total):
@@ -14,5 +14,5 @@ def get_progress_bar(action, file, length):
         bar.pos = 0
         bar.update(current)
         last_current.value = current
-        time.sleep(.2)
+        time.sleep(.3)
     return progress, bar
