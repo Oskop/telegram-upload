@@ -17,7 +17,7 @@ def get_progress_bar(action, file, length):
         if length < 525292800:
             time.sleep(.2)
         elif length < 1025292800:
-            time.sleep(.25)
-        else:
             time.sleep(.3)
+        else:
+            time.sleep(.4)
     return progress, bar
