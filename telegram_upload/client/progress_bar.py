@@ -14,8 +14,4 @@ def get_progress_bar(action, file, length):
         bar.pos = 0
         bar.update(current)
         last_current.value = current
-        if length < 1525292800:
-            time.sleep(.2)
-        else:
-            time.sleep(.3)
     return progress, bar
