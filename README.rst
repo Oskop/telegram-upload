@@ -45,7 +45,7 @@ To **install 🔧 telegram-upload** from original repo (Nekmo), run this command
 
     $ sudo pip3 install -U telegram-upload # original version
 
-To **install 🔧 telegram-upload** from this forked version, run this command in your terminal:
+To **install 🔧 telegram-upload** from this forked version (unstable), run this command in your terminal:
 
 .. code-block:: console
 
@@ -53,7 +53,7 @@ To **install 🔧 telegram-upload** from this forked version, run this command i
     or
     $ pip install git+https://github.com/Oskop/telegram-upload.git@master#egg=telegram_upload
 
-This is the preferred method to install telegram-upload, as it will always install the most recent stable release.
+This is the preferred method to install telegram-upload, as it will always install the most recent release.
 🐍 **Python 3.7-3.11** are tested and supported. This forked repo avoids RPCError 420: FLOOD_PREMIUM_WAIT by adding 
 FloodError exception in _send_file_part function so the upload process takes more time. There are other installation ways available like `Docker <#-docker>`_.
 More info in the `📕 documentation <https://docs.nekmo.org/telegram-upload/installation.html>`_
