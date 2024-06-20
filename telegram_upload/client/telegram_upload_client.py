@@ -7,7 +7,7 @@ from typing import Iterable, Optional
 import click
 from telethon import TelegramClient, utils, helpers, custom
 from telethon.crypto import AES
-from telethon.errors import RPCError, FloodWaitError, InvalidBufferError
+from telethon.errors import RPCError, FloodWaitError, InvalidBufferError, FloodError
 from telethon.tl import types, functions, TLRequest
 from telethon.utils import pack_bot_file_id
 
@@ -345,6 +345,7 @@ class TelegramUploadClient(TelegramClient):
         :return: None
         """
         result = None
+        seconds_delay = 0
         try:
             result = await self(request)
         except InvalidBufferError as e:
@@ -356,11 +357,21 @@ class TelegramUploadClient(TelegramClient):
         except ConnectionError:
             # Retry to send the file part
             click.echo(f'Detected connection error. Retrying...', err=True)
+        except FloodError as e:
+            # Retry to send the file part
+            click.echo(f'Detected {e.message} error. Retrying...', err=True)
+            if 'FLOOD_PREMIUM_WAIT' in e.__str__():
+                for partms in e.__str__().split(' '):
+                    if 'FLOOD_PREMIUM_WAIT' in partms:
+                        seconds_delay = int(partms.split('_')[-1]) + 1
         else:
             self.upload_semaphore.release()
         if result is None and retry < MAX_RECONNECT_RETRIES:
             # An error occurred, retry
-            await asyncio.sleep(max(MIN_RECONNECT_WAIT, retry * MIN_RECONNECT_WAIT))
+            if seconds_delay > 0:
+                await asyncio.sleep(seconds_delay)
+            else:
+                await asyncio.sleep(max(MIN_RECONNECT_WAIT, retry * MIN_RECONNECT_WAIT))
             await self.reconnect()
             await self._send_file_part(
                 request, part_index, part_count, pos, file_size, progress_callback, retry + 1
