@@ -123,7 +123,7 @@ setup(
     include_package_data=True,
 
     description=__doc__.replace('\n', ' '),
-    long_description=open(readme, 'r').read(),
+    long_description=open(readme, 'r', errors="replace").read(),
     keywords=KEYWORDS,
     download_url=PACKAGE_DOWNLOAD_URL,
 
